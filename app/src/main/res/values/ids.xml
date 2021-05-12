@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="exportarPDFBt" type="id" />
+    <item name="sitePessoalBt" type="id" />
+    <item name="telefoneResidencialRb" type="id" />
+    <item name="telefoneComercialRb" type="id" />
+    <item name="addTelefoneCb" type="id" />
+    <item name="sitePessoalEt" type="id" />
+    <item name="salvarBt" type="id" />
+</resources>

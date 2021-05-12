@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.edu.ifsp.scl.pdm.contatos.ContatoActivity" >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/nomeEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nome_completo"
+            android:inputType="textPersonName"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="5dp"
+            android:layout_margin="5dp"/>
+
+        <EditText
+            android:id="@+id/emailEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nomeEt"
+            android:padding="5dp"
+            android:layout_margin="5dp"/>
+
+        <EditText
+            android:id="@+id/telefoneEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/telefone"
+            android:inputType="phone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/emailEt"
+            android:padding="5dp"
+            android:layout_margin="5dp"/>
+
+        <RadioGroup
+            android:id="@+id/tipoTelefoneRg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/telefoneEt"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+            <RadioButton
+                android:id="@+id/telefoneResidencialRb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="@string/telefone_residencial" />
+            <RadioButton
+                android:id="@+id/telefoneComercialRb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="@string/telefone_comercial" />
+        </RadioGroup>
+
+        <CheckBox
+            android:id="@+id/addTelefoneCb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tipoTelefoneRg"
+            android:text="@string/adicionar_telefone_celular"
+            android:padding="5dp"
+            android:onClick="isCheckedAddCellPhone"
+            android:layout_margin="5dp"/>
+
+        <EditText
+            android:id="@+id/celularEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            app:layout_constraintTop_toBottomOf="@id/addTelefoneCb"
+            android:ems="10"
+            android:inputType="phone"
+            android:hint="@string/celular"
+            android:visibility="gone"/>
+
+        <EditText
+            android:id="@+id/sitePessoalEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/celularEt"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/site_pessoal"/>
+
+        <Button
+            android:id="@+id/salvarBt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sitePessoalEt"
+            android:text="@string/salvar"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:onClick="onClickButton"/>
+
+        <Button
+            android:id="@+id/enviarEmailBt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/salvarBt"
+            android:text="@string/enviar_email"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:onClick="onClickButton"/>
+
+        <Button
+            android:id="@+id/ligarBt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/enviarEmailBt"
+            android:text="@string/ligar"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:onClick="onClickButton"/>
+
+        <Button
+            android:id="@+id/sitePessoalBt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ligarBt"
+            android:text="@string/acessar_site_pessoal"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:onClick="onClickButton"/>
+
+        <Button
+            android:id="@+id/exportarPDFBt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sitePessoalBt"
+            android:text="@string/exportar_pdf"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:onClick="onClickButton"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

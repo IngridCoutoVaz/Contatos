@@ -11,6 +11,7 @@ import br.edu.ifsp.scl.pdm.contatos.model.Contato;
 import br.edu.ifsp.scl.pdm.contatos.model.R;
 import br.edu.ifsp.scl.pdm.contatos.model.databinding.ActivityContatoBinding;
 
+
 public class ContatoActivity extends AppCompatActivity {
 
     private ActivityContatoBinding activityContatoBinding;
@@ -19,10 +20,21 @@ public class ContatoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contato);
-
-        activityContatoBinding = activityContatoBinding.inflate(getLayoutInflater());
+        // Ligando (binding) objetos com as Views
+        activityContatoBinding = ActivityContatoBinding.inflate(getLayoutInflater());
         setContentView(activityContatoBinding.getRoot());
+
+        //Libera o campo de celular
+        activityContatoBinding.addTelefoneCb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(activityContatoBinding.addTelefoneCb.isChecked()){
+                    activityContatoBinding.celularEt.setVisibility(View.VISIBLE);
+                }   else{
+                    activityContatoBinding.celularEt.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 
     public void isCheckedAddCellPhone(View view) {
@@ -30,7 +42,7 @@ public class ContatoActivity extends AppCompatActivity {
             activityContatoBinding.celularEt.setVisibility(View.VISIBLE);
         else{
             activityContatoBinding.celularEt.setVisibility(View.GONE);
-            activityContatoBinding.celularEt.setText("");
+            activityContatoBinding.celularEt.setText(" ");
         }
     }
 
@@ -44,6 +56,12 @@ public class ContatoActivity extends AppCompatActivity {
                 activityContatoBinding.sitePessoalEt.getText().toString()
         );
         switch (view.getId()){
+            case R.id.salvarBt:
+                Intent retornoIntent =  new Intent();
+                retornoIntent.putExtra(Intent.EXTRA_USER, contato);
+                setResult(RESULT_OK, retornoIntent);
+                finish();
+                break;
             case R.id.ligarBt:
                 ligacao();
                 break;

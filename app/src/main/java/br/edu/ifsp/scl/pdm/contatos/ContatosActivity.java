@@ -147,8 +147,6 @@ public class ContatosActivity extends AppCompatActivity {
                 acessarSitePessoalIntent.setData(Uri.parse("https://" + contato.getSite()));
                 startActivity(acessarSitePessoalIntent);
                 return true;
-            case R.id.detalhesContatoMi:
-                return true;
             case R.id.editarContatoMi:
                 Intent editarContatoIntent = new Intent(this, ContatoActivity.class);
                 editarContatoIntent.putExtra(Intent.EXTRA_USER, contato);

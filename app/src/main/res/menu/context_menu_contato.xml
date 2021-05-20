@@ -13,9 +13,6 @@
     </group>
     <group android:id="@+id/contatoMg">
         <item
-            android:id="@+id/detalhesContatoMi"
-            android:title="Detalhes" />
-        <item
             android:id="@+id/editarContatoMi"
             android:title="Editar" />
         <item

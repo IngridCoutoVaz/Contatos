@@ -56,14 +56,7 @@
             android:layout_margin="5dp"
             android:orientation="horizontal"
             android:layout_gravity="center_horizontal">
-            <RadioButton
-                android:id="@+id/telefoneResidencialRb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:text="@string/telefone_residencial" />
+
             <RadioButton
                 android:id="@+id/telefoneComercialRb"
                 android:layout_width="wrap_content"
@@ -126,48 +119,12 @@
             android:onClick="onClickButton"/>
 
         <Button
-            android:id="@+id/enviarEmailBt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/salvarBt"
-            android:text="@string/enviar_email"
-            android:padding="5dp"
-            android:layout_margin="5dp"
-            android:onClick="onClickButton"/>
-
-        <Button
-            android:id="@+id/ligarBt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/enviarEmailBt"
-            android:text="@string/ligar"
-            android:padding="5dp"
-            android:layout_margin="5dp"
-            android:onClick="onClickButton"/>
-
-        <Button
-            android:id="@+id/sitePessoalBt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ligarBt"
-            android:text="@string/acessar_site_pessoal"
-            android:padding="5dp"
-            android:layout_margin="5dp"
-            android:onClick="onClickButton"/>
-
-        <Button
             android:id="@+id/exportarPDFBt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sitePessoalBt"
+            app:layout_constraintTop_toBottomOf="@id/salvarBt"
             android:text="@string/exportar_pdf"
             android:padding="5dp"
             android:layout_margin="5dp"

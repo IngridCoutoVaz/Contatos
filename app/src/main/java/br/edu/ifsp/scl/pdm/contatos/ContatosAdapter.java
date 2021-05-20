@@ -38,6 +38,8 @@ public class ContatosAdapter extends ArrayAdapter<Contato> {
                 contatoViewHolder = new ContatoViewHolder();
                 contatoViewHolder.nomeContatoTv = viewContatoBinding.nomeContatoTv;
                 contatoViewHolder.emailContatoTv = viewContatoBinding.emailContatoTv;
+                contatoViewHolder.telefoneContatoTv = viewContatoBinding.telefoneContatoTv;
+
 
                 //Associa a View da célula ao Holder que referencia suas Views Internas
                 convertView.setTag(contatoViewHolder);
@@ -50,6 +52,7 @@ public class ContatosAdapter extends ArrayAdapter<Contato> {
             Contato contato = getItem(position);
             contatoViewHolder.nomeContatoTv.setText(contato.getNome());
             contatoViewHolder.emailContatoTv.setText(contato.getEmail());
+            contatoViewHolder.telefoneContatoTv.setText(contato.getTelefone());
 
             return convertView;
         }
@@ -57,5 +60,6 @@ public class ContatosAdapter extends ArrayAdapter<Contato> {
         private class ContatoViewHolder{
             public TextView nomeContatoTv;
             public TextView emailContatoTv;
+            public TextView telefoneContatoTv;
         }
 }

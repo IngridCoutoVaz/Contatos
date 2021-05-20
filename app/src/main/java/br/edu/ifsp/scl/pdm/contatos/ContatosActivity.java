@@ -10,8 +10,10 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
@@ -28,6 +30,7 @@ public class ContatosActivity extends AppCompatActivity {
     private ContatosAdapter contatosAdapter;
     private final int NOVO_CONTATO_REQUEST_CODE = 0;
     private final int CALL_PHONE_PERMISSION_REQUEST_CODE = 1;
+    private final int EDITAR_CONTATO_REQUEST_CODE = 2;
 
     private Contato contato;
 
@@ -53,6 +56,14 @@ public class ContatosActivity extends AppCompatActivity {
 
         // Registrando listView para o menu de contexto
         registerForContextMenu(activityContatosBinding.contatosLv);
+
+        // Associar um listener de clique para o listView
+        activityContatosBinding.contatosLv.setOnItemClickListener(((parent, view, position, id) -> {
+            contato = contatosList.get(position);
+            Intent detalhesIntent = new Intent(this, ContatoActivity.class);
+            detalhesIntent.putExtra(Intent.EXTRA_USER, contato);
+            startActivity(detalhesIntent);
+        }));
     }
 
     //Teste
@@ -94,7 +105,23 @@ public class ContatosActivity extends AppCompatActivity {
                 contatosList.add(contato);
                 contatosAdapter.notifyDataSetChanged(); // notifica o adapter a alteracao no conjunto de dados
             }
+        } else if(requestCode == EDITAR_CONTATO_REQUEST_CODE && resultCode == RESULT_OK){
+            //Atualiza o contato
+            Contato contato = (Contato) data.getSerializableExtra(Intent.EXTRA_USER);
+            int posicao = data.getIntExtra(Intent.EXTRA_INDEX, -1);
+
+            if (contato != null && posicao != -1){
+                contatosList.remove(posicao);
+                contatosList.add(posicao, contato);
+                contatosAdapter.notifyDataSetChanged();
+            }
+
         }
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        getMenuInflater().inflate(R.menu.context_menu_contato, menu);
     }
 
     @Override
@@ -105,17 +132,17 @@ public class ContatosActivity extends AppCompatActivity {
         contato = contatosAdapter.getItem(menuInfo.position);
 
         switch (item.getItemId()){
-            case R.id.enviarEmailBt:
+            case R.id.enviarEmailMi:
                 Intent enviarEmailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto: "));
                 enviarEmailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{contato.getEmail()});
                 enviarEmailIntent.putExtra(Intent.EXTRA_SUBJECT, contato.getNome());
                 enviarEmailIntent.putExtra(Intent.EXTRA_TEXT, contato.toString());
                 startActivity(enviarEmailIntent);
                 return true;
-            case R.id.ligarBt:
+            case R.id.ligarMi:
                 verifyCallPhonePermission();
                 return true;
-            case R.id.sitePessoalBt:
+            case R.id.acessarSiteMi:
                 Intent acessarSitePessoalIntent = new Intent(Intent.ACTION_VIEW);
                 acessarSitePessoalIntent.setData(Uri.parse("https://" + contato.getSite()));
                 startActivity(acessarSitePessoalIntent);
@@ -123,8 +150,14 @@ public class ContatosActivity extends AppCompatActivity {
             case R.id.detalhesContatoMi:
                 return true;
             case R.id.editarContatoMi:
+                Intent editarContatoIntent = new Intent(this, ContatoActivity.class);
+                editarContatoIntent.putExtra(Intent.EXTRA_USER, contato);
+                editarContatoIntent.putExtra(Intent.EXTRA_INDEX, menuInfo.position);
+                startActivityForResult(editarContatoIntent, EDITAR_CONTATO_REQUEST_CODE);
                 return true;
             case R.id.removerContatoMi:
+                contatosList.remove(menuInfo.position);
+                contatosAdapter.notifyDataSetChanged();
                 return true;
             default:
                 return false;
